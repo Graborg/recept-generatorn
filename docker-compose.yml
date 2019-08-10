@@ -1,0 +1,23 @@
+version: "2.4"
+
+services:
+  app:
+    build: .
+    ports:
+      - 4000:4000
+    networks:
+      postgres:
+
+  postgres:
+    image: postgres:11.2
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    networks:
+      postgres:
+    ports:
+      - 5432:5432
+
+networks:
+  postgres:
+    external: true

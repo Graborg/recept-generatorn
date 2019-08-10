@@ -1,0 +1,4 @@
+<div class="phx-hero">
+  <h2>Idag borde du göra <%= @name %>!</h2>
+  <%= button("helvete heller... jag vill göra något annat", to: "/", method: "get") %>
+</div>

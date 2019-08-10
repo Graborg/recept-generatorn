@@ -1,0 +1,4 @@
+<%= form_for @conn, Routes.main_path(@conn, :new), [as: :main], fn form -> %>
+  <%= text_input form, :name %>
+  <%= submit "Lägg till" %>
+<% end %>
