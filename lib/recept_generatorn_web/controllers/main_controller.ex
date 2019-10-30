@@ -14,17 +14,20 @@ defmodule ReceptGeneratornWeb.MainController do
         limit: 1
 
     List.first(ReceptGeneratorn.Repo.all(query))
+  end
 
-    # ReceptGeneratorn.Recipe
-    # |> Ecto.Query.first()
-    # |> ReceptGeneratorn.Repo.all()
+  def get_all_recipes() do
+    ReceptGeneratorn.Recipe
+    |> ReceptGeneratorn.Repo.all()
   end
 
   @spec new(Plug.Conn.t(), any()) :: Plug.Conn.t()
   def new(conn, _params) do
-    # ReceptGeneratorn.Repo.delete_all(ReceptGeneratorn.Recipe)
+    recipes = get_all_recipes()
 
     conn
+    |> assign(:name, "recipes")
+    |> assign(:recipes, recipes)
     |> render("new.html")
   end
 
@@ -32,17 +35,34 @@ defmodule ReceptGeneratornWeb.MainController do
     IO.inspect(params["main"]["name"])
     recept = %ReceptGeneratorn.Recipe{name: params["main"]["name"], ingredients: []}
     ReceptGeneratorn.Repo.insert(recept)
+    recipes = get_all_recipes()
 
     conn
+    |> assign(:name, recipes)
+    |> assign(:recipes, recipes)
     |> render("new.html")
   end
 
-  def random(conn, _params) do
-    recipe = getRecipe()
-    IO.inspect(recipe)
+  def delete(conn, %{"id" => id}) do
+    ReceptGeneratorn.Recipe
+      |>  ReceptGeneratorn.Repo.get!(id)
+      |> ReceptGeneratorn.Repo.delete!()
 
     conn
-    |> assign(:name, recipe.name)
-    |> render("random.html")
+      |> redirect(to: "/new")
+  end
+
+  def random(conn, _params) do
+    case getRecipe() do
+      nil ->
+        conn
+        |> put_flash(:info, "You need to first create a recipe")
+        |> redirect( to: "/new")
+      recipe ->
+        conn
+        |> assign(:name, recipe.name)
+        |> render("random.html")
+    end
+
   end
 end

@@ -19,6 +19,7 @@ defmodule ReceptGeneratornWeb.Router do
     get "/", MainController, :random
     get "/new", MainController, :new
     post "/new", MainController, :create
+    delete "/:id", MainController, :delete
     get "/random", MainController, :random
   end
 

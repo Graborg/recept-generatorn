@@ -88,7 +88,7 @@ select {
 /* Headers */
 header {
   width: 100%;
-  background: #fdfdfd;
+  background: #212127;
   border-bottom: 1px solid #eaeaea;
   margin-bottom: 2rem;
 }
@@ -131,4 +131,32 @@ header nav a {
     flex-basis: 527px;
     margin: 2rem 1rem;
   }
+}
+
+li {
+  position: relative;
+  list-style: none;
+}
+
+.line-item {
+  display: list-item;
+}
+
+.recipe-name{
+  line-height: 35px;
+  display: flex;
+  box-sizing: content-box;
+}
+
+.fa-minus-square {
+  position: absolute;
+  right: 4px;
+  display: flex;
+  color: #de935f;
+  top: 0;
+}
+
+body, html {
+  color: #d9edf7;
+  background-color: #212127;
 }

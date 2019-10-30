@@ -1,4 +1,15 @@
-<%= form_for @conn, Routes.main_path(@conn, :new), [as: :main], fn form -> %>
+<%= form_for @conn, Routes.main_path(@conn, :create), [as: :main], fn form -> %>
   <%= text_input form, :name %>
   <%= submit "Lägg till" %>
 <% end %>
+<ul>
+  <%= for recipe <- @recipes do %>
+  <li> 
+  <div class="line-item">
+    <div class="recipe-name"> <%= recipe.name %> </div>
+    <%= link("", to: Routes.main_path(@conn, :delete, recipe), method: :delete, class: "fas fa-minus-square") %></div>
+  </div>
+  </li>
+
+  <% end %>
+</ul>
