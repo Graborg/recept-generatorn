@@ -33,6 +33,7 @@ RUN apt-get update && apt-get install -y openssl
 RUN useradd --create-home app
 WORKDIR /home/app
 COPY --from=app_builder /app/_build .
+COPY --from=app_builder /app/priv .
 RUN chown -R app: ./prod
 USER app
 
