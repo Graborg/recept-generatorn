@@ -2,7 +2,8 @@ import Ecto.Query
 
 defmodule ReceptGeneratornWeb.MainController do
   use ReceptGeneratornWeb, :controller
-
+  alias Phoenix.LiveView
+  alias ReceptGeneratorn.Recipe
   def index(conn, _params) do
     render(conn, :index)
   end
@@ -16,26 +17,25 @@ defmodule ReceptGeneratornWeb.MainController do
     List.first(ReceptGeneratorn.Repo.all(query))
   end
 
-  def get_all_recipes() do
-    ReceptGeneratorn.Recipe
-    |> ReceptGeneratorn.Repo.all()
-  end
+
 
   @spec new(Plug.Conn.t(), any()) :: Plug.Conn.t()
   def new(conn, _params) do
-    recipes = get_all_recipes()
-
-    conn
-    |> assign(:name, "recipes")
-    |> assign(:recipes, recipes)
-    |> render("new.html")
+    recipes = Recipe.get_all_recipes()
+    # conn
+    # |> assign(:name, "recipes")
+    # |> assign(:recipes, recipes)
+    # |> render("new.html")
+    LiveView.Controller.live_render(conn, ReceptGeneratornWeb.LiveView, session: %{recipes: recipes})
   end
 
+
   def create(conn, params) do
+    IO.puts("inspector")
     IO.inspect(params["main"]["name"])
     recept = %ReceptGeneratorn.Recipe{name: params["main"]["name"], ingredients: []}
     ReceptGeneratorn.Repo.insert(recept)
-    recipes = get_all_recipes()
+    recipes = Recipe.get_all_recipes()
 
     conn
     |> assign(:name, recipes)

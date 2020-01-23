@@ -1,0 +1,24 @@
+<form action="#" phx-submit="add">
+  <%= text_input :recipe, :name %>
+  <%= submit "Lägg till", phx_disable_with: "Adding..." %>
+</form>
+
+<ul>
+  <%= for recipe <- @recipes do %>
+  <li> 
+  <div class="line-item">
+    <div class="recipe-name"> <%= recipe.name %> </div>
+    <ul>
+    <%= for ingredient <- recipe.ingredients do %>
+      <li><%= ingredient %></li>
+    <% end %>
+    </ul>
+    <form phx-submit="add-ingredient">
+      <%= text_input :recipe, :ingredient %>
+      <%= hidden_input :recipe, :recipe_name, value: recipe.name %>
+      <%= submit "Lägg till ingrediens" %>
+   </form>
+  </div>
+  </li>
+  <% end %>
+</ul>

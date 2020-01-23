@@ -7,7 +7,10 @@
 // Pass the token on params as below. Or remove it
 // from the params if you are not using authentication.
 import {Socket} from "phoenix"
+// import LiveSocket from "phoenix_live_view"
 
+// let liveSocket = new LiveSocket("/live", Socket)
+// liveSocket.connect()
 let socket = new Socket("/socket", {params: {token: window.userToken}})
 
 // When you connect, you'll often need to authenticate the client.

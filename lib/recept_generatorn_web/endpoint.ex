@@ -1,9 +1,10 @@
 defmodule ReceptGeneratornWeb.Endpoint do
-  use Phoenix.Endpoint, otp_app: :recept_generatorn
 
-  socket "/socket", ReceptGeneratornWeb.UserSocket,
-    websocket: true,
-    longpoll: false
+  use Phoenix.Endpoint, otp_app: :recept_generatorn
+  socket "/live", Phoenix.LiveView.Socket
+  # socket "/socket", ReceptGeneratornWeb.UserSocket,
+  #   websocket: true,
+  #   longpoll: false
 
   # Serve at "/" the static files from "priv/static" directory.
   #

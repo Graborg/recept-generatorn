@@ -149,6 +149,7 @@ li {
 }
 
 .fa-minus-square {
+  margin-top: 9px;
   position: absolute;
   right: 4px;
   display: flex;
@@ -159,4 +160,8 @@ li {
 body, html {
   color: #d9edf7;
   background-color: #212127;
+}
+
+input {
+  color: white;
 }

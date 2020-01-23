@@ -61,7 +61,8 @@ config :recept_generatorn, ReceptGeneratornWeb.Endpoint,
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
       ~r"lib/recept_generatorn_web/{live,views}/.*(ex)$",
-      ~r"lib/recept_generatorn_web/templates/.*(eex)$"
+      ~r"lib/recept_generatorn_web/templates/.*(eex)$",
+      ~r{lib/recept_generatorn_web/live/.*(ex)$}
     ]
   ]
 
