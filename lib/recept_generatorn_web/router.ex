@@ -19,7 +19,8 @@ defmodule ReceptGeneratornWeb.Router do
   scope "/", ReceptGeneratornWeb do
 
     # pipe_through :browser
-    live "/new", LiveView
+    live "/new", NewRecipeLive
+    live "/", RandomRecipeLive
     # get "/", MainController, :random
     # # get "/new", MainController, :new
     # post "/new", MainController, :create

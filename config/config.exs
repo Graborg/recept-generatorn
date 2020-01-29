@@ -18,6 +18,11 @@ config :recept_generatorn, ReceptGeneratornWeb.Endpoint,
   pubsub: [name: ReceptGeneratorn.PubSub, adapter: Phoenix.PubSub.PG2],
   live_view: [
     signing_salt: "Q2BIDgnlqSqsICAIutYV6wG7yDDziwc0l8bqldfWqCDa4ySewY/t4WZoPYW7uiNe"
+  ],
+  live_reload: [
+    patterns: [
+      ~r{lib/recept_generatorn_web/live/.*(ex)$}
+    ]
   ]
 
 # Configures Elixir's Logger

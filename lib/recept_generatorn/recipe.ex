@@ -1,6 +1,9 @@
 defmodule ReceptGeneratorn.Recipe do
   use Ecto.Schema
   import Ecto.Changeset
+  import Ecto.Query
+
+  alias Phoenix.LiveView
 
   schema "recipes" do
     field :ingredients, {:array, :string}
@@ -47,5 +50,15 @@ defmodule ReceptGeneratorn.Recipe do
       |> ReceptGeneratorn.Repo.get_by!(name: recipe)
       |> (fn old_recipe -> changeset(old_recipe, %{ ingredients: old_recipe.ingredients -- [ingredient] }) end).()
       |> ReceptGeneratorn.Repo.update()
+  end
+
+
+  def get_random_recipe() do
+    query =
+      from ReceptGeneratorn.Recipe,
+        order_by: fragment("RANDOM()"),
+        limit: 1
+
+    List.first(ReceptGeneratorn.Repo.all(query))
   end
 end

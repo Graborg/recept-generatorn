@@ -1,4 +1,4 @@
-defmodule ReceptGeneratornWeb.LiveView do
+defmodule ReceptGeneratornWeb.NewRecipeLive do
   use Phoenix.LiveView
   alias ReceptGeneratorn.Recipe
   def mount(_session, socket) do
