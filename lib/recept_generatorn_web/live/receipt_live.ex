@@ -2,7 +2,8 @@ defmodule ReceptGeneratornWeb.LiveView do
   use Phoenix.LiveView
   alias ReceptGeneratorn.Recipe
   def mount(_session, socket) do
-    {:ok, assign(socket, recipes: [])}
+    recipes = Recipe.get_all_recipes()
+    {:ok, assign(socket, recipes: recipes)}
   end
 
   def render(assigns) do
@@ -12,7 +13,6 @@ defmodule ReceptGeneratornWeb.LiveView do
   def handle_event("add", %{"recipe" => %{"name" => name}}, socket) do
     Recipe.create_recipe(name, [])
     recipes = Recipe.get_all_recipes()
-    IO.inspect(recipes)
     {:noreply, assign(socket, recipes: recipes)}
   end
 

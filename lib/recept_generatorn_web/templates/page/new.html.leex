@@ -1,6 +1,6 @@
 <form action="#" phx-submit="add">
   <%= text_input :recipe, :name %>
-  <%= submit "Lägg till", phx_disable_with: "Adding..." %>
+  <%= submit "Lägg till recept", phx_disable_with: "Adding..." %>
 </form>
 
 <ul>
@@ -16,7 +16,7 @@
     <form phx-submit="add-ingredient">
       <%= text_input :recipe, :ingredient %>
       <%= hidden_input :recipe, :recipe_name, value: recipe.name %>
-      <%= submit "Lägg till ingrediens" %>
+      <%= submit "Lägg till ny ingrediens" %>
    </form>
   </div>
   </li>

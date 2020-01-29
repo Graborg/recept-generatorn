@@ -17,19 +17,6 @@ defmodule ReceptGeneratornWeb.MainController do
     List.first(ReceptGeneratorn.Repo.all(query))
   end
 
-
-
-  @spec new(Plug.Conn.t(), any()) :: Plug.Conn.t()
-  def new(conn, _params) do
-    recipes = Recipe.get_all_recipes()
-    # conn
-    # |> assign(:name, "recipes")
-    # |> assign(:recipes, recipes)
-    # |> render("new.html")
-    LiveView.Controller.live_render(conn, ReceptGeneratornWeb.LiveView, session: %{recipes: recipes})
-  end
-
-
   def create(conn, params) do
     IO.puts("inspector")
     IO.inspect(params["main"]["name"])
