@@ -30,10 +30,22 @@ defmodule ReceptGeneratorn.Recipe do
 
   def add_ingredient(_, ""), do: []
   def add_ingredient(recipe, ingredient) do
-    IO.inspect(ingredient)
     old_recipe = ReceptGeneratorn.Recipe |> ReceptGeneratorn.Repo.get_by!(name: recipe) |> IO.inspect()
     changeset(old_recipe, %{ ingredients: [ingredient | old_recipe.ingredients ] })
       |> IO.inspect()
+      |> ReceptGeneratorn.Repo.update()
+  end
+
+  def remove_recipe(recipe) do
+    ReceptGeneratorn.Recipe
+      |> ReceptGeneratorn.Repo.get_by!(name: recipe)
+      |> ReceptGeneratorn.Repo.delete()
+  end
+
+  def remove_ingredient(recipe, ingredient) do
+    ReceptGeneratorn.Recipe
+      |> ReceptGeneratorn.Repo.get_by!(name: recipe)
+      |> (fn old_recipe -> changeset(old_recipe, %{ ingredients: old_recipe.ingredients -- [ingredient] }) end).()
       |> ReceptGeneratorn.Repo.update()
   end
 end

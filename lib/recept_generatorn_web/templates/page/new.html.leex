@@ -9,15 +9,20 @@
   <div class="line-item">
     <div class="recipe-name"> <%= recipe.name %> </div>
     <ul>
-    <%= for ingredient <- recipe.ingredients do %>
-      <li><%= ingredient %></li>
-    <% end %>
+      <%= for ingredient <- recipe.ingredients do %>
+        <li class="ingredient-list-item">
+          <%= ingredient %>
+          <i phx-click="remove-ingredient" phx-value-recipe=<%= recipe.name %> phx-value-ingredient=<%= ingredient %> class="fas fa-minus-square"></i>
+       </li>
+      <% end %>
     </ul>
     <form phx-submit="add-ingredient">
       <%= text_input :recipe, :ingredient %>
       <%= hidden_input :recipe, :recipe_name, value: recipe.name %>
       <%= submit "Lägg till ny ingrediens" %>
    </form>
+  
+  <i phx-click="remove-recipe" phx-value-recipe=<%= recipe.name %> class="fas fa-minus-square"></i>
   </div>
   </li>
   <% end %>

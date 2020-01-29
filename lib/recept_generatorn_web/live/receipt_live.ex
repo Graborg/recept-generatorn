@@ -21,4 +21,16 @@ defmodule ReceptGeneratornWeb.LiveView do
     recipes = Recipe.get_all_recipes()
     {:noreply, assign(socket, recipes: recipes)}
   end
+
+  def handle_event("remove-recipe", %{"recipe" => recipe}, socket) do
+    Recipe.remove_recipe(recipe)
+    recipes = Recipe.get_all_recipes()
+    {:noreply, assign(socket, recipes: recipes)}
+  end
+
+  def handle_event("remove-ingredient", %{"recipe" => recipe, "ingredient" => ingredient}, socket) do
+    Recipe.remove_ingredient(recipe, ingredient)
+    recipes = Recipe.get_all_recipes()
+    {:noreply, assign(socket, recipes: recipes)}
+  end
 end

@@ -149,12 +149,12 @@ li {
 }
 
 .fa-minus-square {
-  margin-top: 9px;
   position: absolute;
   right: 4px;
   display: flex;
-  color: #de935f;
+  color: #d35d40;
   top: 0;
+  font-size: 24px;
 }
 
 body, html {
@@ -164,4 +164,9 @@ body, html {
 
 input {
   color: white;
+}
+
+.ingredient-list-item {
+  display: flex;
+  flex-direction: row;
 }
