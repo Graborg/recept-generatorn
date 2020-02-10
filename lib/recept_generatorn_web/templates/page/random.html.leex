@@ -1,4 +1,7 @@
-<div class="phx-hero">
+<%= if @name do %>
   <h2>Idag borde du göra <%= @name %>!</h2>
   <%= button("helvete heller... jag vill göra något annat", to: "/", method: "get") %>
-</div>
+<% else %>
+  <h2>Börja med att lägga in ett recept </h2>
+  <%= button("Lägg in recept", to: "/new", method: "get") %>
+<% end %>
