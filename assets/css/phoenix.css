@@ -170,3 +170,8 @@ input {
   display: flex;
   flex-direction: row;
 }
+
+button {
+  border-color: #65e3b8;
+  background-color: #65e3b8;
+}
