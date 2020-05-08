@@ -1,26 +1,34 @@
 defmodule ReceptGeneratornWeb.Router do
   use ReceptGeneratornWeb, :router
-  # use Phoenix.Router
+  import Phoenix.LiveView.Router
 
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_flash
-    plug Phoenix.LiveView.Flash
     plug :protect_from_forgery
-    plug :put_layout, {ReceptGeneratornWeb.LayoutView, :app}
+    plug :fetch_user_token
     plug :put_secure_browser_headers
+    plug :put_layout, {ReceptGeneratornWeb.LayoutView, :app}
   end
 
   pipeline :api do
     plug :accepts, ["json"]
   end
 
+  @spec fetch_user_token(Plug.Conn.t(), any) :: Plug.Conn.t()
+  def fetch_user_token(conn, h) do
+    conn
+    |> assign(:user_token, get_session(conn, :username))
+  end
+
   scope "/", ReceptGeneratornWeb do
 
-    # pipe_through :browser
-    live "/new", NewRecipeLive
+    pipe_through :browser
     live "/", RandomRecipeLive
+    live "/new", NewRecipeLive
+    live "/new/open-login", NewRecipeLive,
+      as: "login_live"
     # get "/", MainController, :random
     # # get "/new", MainController, :new
     # post "/new", MainController, :create

@@ -7,6 +7,11 @@
 # General application configuration
 use Mix.Config
 
+config :pigeon, :fcm,
+  fcm_default: %{
+    key: "AAAAuyIchKA:APA91bEtIbpT1eu8Hwhn0jArvyRen52YK0slIAR3UQIKa_rlZuQiM_Uh_zXXdBWL0uZGpa5s7acPbnfYbxtn5FfMdtgQcIhM1EGkrWPR8IbsB-vEToFJSUMjtgBTrDLVcFF4dXfCrvU0"
+  }
+
 config :recept_generatorn,
   ecto_repos: [ReceptGeneratorn.Repo]
 

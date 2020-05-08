@@ -1,0 +1,17 @@
+<div id="modal-<%= @id %>">
+    <div class="modal-container"
+        phx-hook="ScrollLock">
+    <div class="modal-inner-container">
+        <div class="modal-card">
+        <div class="modal-inner-card">
+            <div class="modal-buttons">
+            <form action="#" phx-submit="login" phx-target="#<%= @id %>" id="<%= @id %>">
+                <%= text_input :user, :username %>
+                <%= submit "Login", phx_disable_with: "Registering..." %>
+            </form>
+            </div>
+        </div>
+        </div>
+    </div>
+    </div>
+</div>

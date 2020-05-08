@@ -1,3 +1,8 @@
+
+<%= if @show_modal do %>
+  <%= live_component(@socket, LoginModal, id: "login-m", name: "hej") %>
+<% end %>
+
 <form action="#" phx-submit="add">
   <%= text_input :recipe, :name %>
   <%= submit "Lägg till recept", phx_disable_with: "Adding..." %>
@@ -5,7 +10,7 @@
 
 <ul>
   <%= for recipe <- @recipes do %>
-  <li> 
+  <li>
   <div class="line-item">
     <div class="recipe-name"> <%= recipe.name %> </div>
     <ul>
@@ -21,8 +26,8 @@
       <%= hidden_input :recipe, :recipe_name, value: recipe.name %>
       <%= submit "Lägg till ny ingrediens" %>
    </form>
-  
-  <i phx-click="remove-recipe" phx-value-recipe=<%= recipe.name %> class="fas fa-minus-square"></i>
+
+  <i phx-click="remove-recipe" phx-value-recipe=<%= recipe.name %> class="fas fa-times-circle"></i>
   </div>
   </li>
   <% end %>

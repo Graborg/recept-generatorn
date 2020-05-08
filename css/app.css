@@ -148,7 +148,7 @@ li {
   box-sizing: content-box;
 }
 
-.fa-times-circle {
+.fa-times-circle{
   position: absolute;
   right: 4px;
   display: flex;
@@ -175,6 +175,7 @@ button {
   border-color: #65e3b8;
   background-color: #65e3b8;
 }
+/* This file is for your main application css. */
 
 .modal-container {
   position: fixed;

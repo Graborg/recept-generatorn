@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <script src="https://www.gstatic.com/firebasejs/7.8.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-messaging.js"></script>
+    <script src="https://kit.fontawesome.com/64a76c3892.js" crossorigin="anonymous"></script>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>ReceptGeneratorn · Phoenix Framework</title>
+    <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
+
+  </head>
+  <body>
+    <script>
+      var firebaseConfig = {
+        apiKey: "AIzaSyA-3EpflMHYvVAK1heqiMaQC93RFR3BF9c",
+        authDomain: "receptgeneratorn.firebaseapp.com",
+        databaseURL: "https://receptgeneratorn.firebaseio.com",
+        projectId: "receptgeneratorn",
+        storageBucket: "receptgeneratorn.appspot.com",
+        messagingSenderId: "803731178656",
+        appId: "1:803731178656:web:2185c064e545dae4a9b5c5",
+        measurementId: "G-4ND92GNQBL"
+      };
+
+
+
+      firebase.initializeApp(firebaseConfig);
+      const messaging = firebase.messaging()
+      messaging.requestPermission().then(() => console.log(messaging.getToken()))
+
+      messaging.getToken().then((currentToken) => {
+        console.log(currentToken)
+      })
+
+messaging.onMessage(function (payload) { 
+      try{  //try???
+      console.log('Message received. ', payload);
+
+      noteTitle = payload.notification.title; 
+      noteOptions = {
+        body: payload.notification.body,
+        icon: "typewriter.jpg", //this is my image in my public folder
+      };
+
+      console.log("title ",noteTitle, " ", payload.notification.body);
+          //var notification = //examples include this, seems not needed
+
+      new Notification(noteTitle, noteOptions);//This can be used to generate a local notification, without an incoming message. noteOptions has to be an object
+    }
+    catch(err){
+      console.log('Caught error: ',err);
+    }
+    });
+    </script>
+
+    <header>
+      <section class="container">
+        <nav role="navigation">
+        </nav>
+          RECEPT-GENERATORN
+        </a>
+        <%= if @conn.request_path == "/" do %>
+          <%= button("Lägg till nytt", to: "/new", method: "get") %>
+        <% else %>
+          <%= button("Vad fan ska jag äta", to: "/", method: "get") %>
+        <% end %>
+          <%= if @username do %>
+            <%= @username %>
+          <% else %>
+            <%= button("Synk", to: "/new/open-login", method: "get") %>
+          <% end %>
+      </section>
+    </header>
+    <main role="main" class="container">
+      <%= render @view_module, @view_template, assigns %>
+    </main>
+    <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
+  </body>
+</html>

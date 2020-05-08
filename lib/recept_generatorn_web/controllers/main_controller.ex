@@ -2,7 +2,6 @@ import Ecto.Query
 
 defmodule ReceptGeneratornWeb.MainController do
   use ReceptGeneratornWeb, :controller
-  alias Phoenix.LiveView
   alias ReceptGeneratorn.Recipe
   def index(conn, _params) do
     render(conn, :index)
@@ -40,16 +39,16 @@ defmodule ReceptGeneratornWeb.MainController do
   end
 
   def random(conn, _params) do
-    case getRecipe() do
-      nil ->
-        conn
-        |> put_flash(:info, "You need to first create a recipe")
-        |> redirect( to: "/new")
-      recipe ->
-        conn
-        |> assign(:name, recipe.name)
-        |> render("random.html")
-    end
+    # case getRecipe() do
+    #   nil ->
+    #     conn
+    #     |> put_flash(:info, "You need to first create a recipe")
+    #     |> redirect( to: "/new")
+    #   recipe ->
+    #     conn
+    #     |> assign(:name, recipe.name)
+    #     |> render("random.html")
+    # end
 
   end
 end

@@ -38,11 +38,12 @@ defmodule ReceptGeneratornWeb do
 
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
-
+      alias ReceptGeneratornWeb.LiveComponent.LoginModal
       import ReceptGeneratornWeb.ErrorHelpers
       import ReceptGeneratornWeb.Gettext
       alias ReceptGeneratornWeb.Router.Helpers, as: Routes
-      import Phoenix.LiveView, only: [live_render: 2, live_render: 3]
+      import Phoenix.LiveView
+      import Phoenix.LiveView.Helpers
     end
   end
 
@@ -51,7 +52,6 @@ defmodule ReceptGeneratornWeb do
       use Phoenix.Router
       import Plug.Conn
       import Phoenix.Controller
-      import Phoenix.LiveView.Router
     end
   end
 
