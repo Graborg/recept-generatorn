@@ -3,10 +3,6 @@ defmodule ReceptGeneratornWeb.RandomRecipeLive do
   alias ReceptGeneratorn.Recipe
 
   def mount(_params, _session, socket) do
-    socket =
-      socket
-      |> assign(:username, nil)
-
     with %{name: name} <- Recipe.get_random_recipe() do
       {:ok, assign(socket, :name, name)}
     else

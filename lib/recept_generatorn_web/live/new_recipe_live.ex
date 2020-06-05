@@ -8,7 +8,7 @@ defmodule ReceptGeneratornWeb.NewRecipeLive do
     recipes = Recipe.get_all_recipes()
     IO.inspect(socket, label: "mount")
     IO.inspect(session, label: "session mount")
-    {:ok, assign(socket, recipes: recipes, username: nil, show_modal: false)}
+    {:ok, assign(socket, recipes: recipes, show_modal: false)}
   end
 
   def render(assigns) do
