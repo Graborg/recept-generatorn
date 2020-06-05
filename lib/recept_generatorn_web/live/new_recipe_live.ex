@@ -51,9 +51,7 @@ defmodule ReceptGeneratornWeb.NewRecipeLive do
         {ReceptGeneratornWeb.LiveComponent.LoginModal, :login, %{username: username}},
         socket
       ) do
-    IO.puts("patchin")
-
-    {:noreply, assign(socket, username: username, show_modal: false)}
+    {:noreply, assign(socket, show_modal: false)}
   end
 
   def handle_params(params, uri, socket) do

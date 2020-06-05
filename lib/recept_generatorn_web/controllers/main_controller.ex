@@ -3,6 +3,7 @@ import Ecto.Query
 defmodule ReceptGeneratornWeb.MainController do
   use ReceptGeneratornWeb, :controller
   alias ReceptGeneratorn.Recipe
+
   def index(conn, _params) do
     render(conn, :index)
   end
@@ -31,14 +32,18 @@ defmodule ReceptGeneratornWeb.MainController do
 
   def delete(conn, %{"id" => id}) do
     ReceptGeneratorn.Recipe
-      |>  ReceptGeneratorn.Repo.get!(id)
-      |> ReceptGeneratorn.Repo.delete!()
+    |> ReceptGeneratorn.Repo.get!(id)
+    |> ReceptGeneratorn.Repo.delete!()
 
     conn
-      |> redirect(to: "/new")
+    |> redirect(to: "/new")
   end
 
   def random(conn, _params) do
+    conn
+    |> assign(:username, nil)
+    |> render("random.html")
+
     # case getRecipe() do
     #   nil ->
     #     conn
@@ -49,6 +54,5 @@ defmodule ReceptGeneratornWeb.MainController do
     #     |> assign(:name, recipe.name)
     #     |> render("random.html")
     # end
-
   end
 end

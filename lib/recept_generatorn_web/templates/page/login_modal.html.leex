@@ -5,10 +5,12 @@
         <div class="modal-card">
         <div class="modal-inner-card">
             <div class="modal-buttons">
-            <form action="#" phx-submit="login" phx-target="#<%= @id %>" id="<%= @id %>">
-                <%= text_input :user, :username %>
-                <%= submit "Login", phx_disable_with: "Registering..." %>
-            </form>
+            <%= form_for @conn, Routes.session_path(ReceptGeneratornWeb.Endpoint, :create),
+            [as: :session],
+            fn f -> %>
+                <%= text_input f, :username, placeholder: "username" %>
+                <%= submit "Log in"%>
+            <% end %>
             </div>
         </div>
         </div>
