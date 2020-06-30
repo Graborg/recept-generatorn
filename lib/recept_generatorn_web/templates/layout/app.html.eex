@@ -70,7 +70,7 @@ messaging.onMessage(function (payload) {
           <%= if @username do %>
             <%= @username %>
           <% else %>
-            <%= button("Synk", to: "/new/open-login", method: "get") %>
+            <%= button("Logga in", to: "/new/open-login", method: "get") %>
           <% end %>
       </section>
     </header>

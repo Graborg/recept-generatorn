@@ -23,7 +23,7 @@ defmodule ReceptGeneratornWeb.Router do
 
   scope "/", ReceptGeneratornWeb do
     pipe_through :browser
-    resources "/sessions", SessionController, only: [:new, :create, :delete]
+    resources "/sessions", SessionController, only: [:create, :delete]
     live "/", RandomRecipeLive
     live "/new", NewRecipeLive
     live "/new/open-login", NewRecipeLive, as: "login_live"
