@@ -67,9 +67,7 @@ messaging.onMessage(function (payload) {
         <% else %>
           <%= button("Vad fan ska jag äta", to: "/", method: "get") %>
         <% end %>
-          <%= if @username do %>
-            <%= @username %>
-          <% else %>
+          <%= if !@user_id do %>
             <%= button("Logga in", to: "/new/open-login", method: "get") %>
           <% end %>
       </section>

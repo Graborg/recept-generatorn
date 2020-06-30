@@ -18,7 +18,9 @@ defmodule ReceptGeneratornWeb.Router do
 
   def fetch_username(conn, _) do
     conn
-    |> assign(:username, get_session(conn, :username))
+    |> assign(:user_id, get_session(conn, :user_id))
+
+    # |> assign(:username, get_session(conn, :username))
   end
 
   scope "/", ReceptGeneratornWeb do
