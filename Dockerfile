@@ -5,7 +5,7 @@ ENV MIX_ENV=prod \
     TEST=1 \
     LANG=C.UTF-8
 
-RUN mix local.hex --force && \
+RUN mix local.hex --ddforce && \
     mix local.rebar --force
 
 
